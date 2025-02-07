@@ -18,6 +18,7 @@ sqlite*.db
 /.venv
 /.update.sh
 /var
+/dist
 .DS_Store
 dump.rdb
 docs_site/

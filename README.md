@@ -40,9 +40,9 @@ Django-Jestit is a collection of Django-based applications focused on authentica
 
 ## Installation
 
-    ```bash
-    pip install django-jestit
-    ```
+```bash
+pip install django-jestit
+```
 
 ## Authit
 
