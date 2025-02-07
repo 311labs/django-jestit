@@ -1,23 +1,22 @@
 # Django-Jestit Documentation
 
-Django-Jestit is a streamlined set of Django applications and a lightweight REST framework designed to simplify user authentication, authorization, and efficient API testing. This documentation provides detailed descriptions and examples for utilizing each component of the Django-Jestit package effectively.
+Django-Jestit is a streamlined set of Django applications and a lightweight REST framework designed to simplify user authentication, authorization, and efficient API testing. This documentation provides descriptions and examples to help you get started quickly.
 
-### Why Django-Jestit?
+## Why Django-Jestit?
 
-We built Django-Jestit to address a common challenge: the complexity and overhead associated with existing REST frameworks. While powerful, many frameworks are feature-heavy, making them cumbersome for projects that require simplicity, speed, and robust security without the extra bulk.
+We built Django-Jestit to address the complexity and overhead of existing REST frameworks. Many frameworks are feature-heavy, making them cumbersome for projects that require simplicity, speed, and robust security.
 
-### Key Differentiators:
+## Key Differentiators
 
-**Super Lightweight Framework:** Django-Jestit is intentionally minimalistic, providing an easy way to add REST APIs to your Django models without unnecessary complexity.
+- **Lightweight Framework:** Django-Jestit is minimalistic, providing an easy way to add REST APIs to your Django models without unnecessary complexity.
 
-**Built-in Security:** Security is at the core of Django-Jestit. It seamlessly integrates with Django's permissions system, offering automatic protection for your REST APIs and data. This ensures that only authorized users can view, create, update, or delete resources.
+- **Built-in Security:** Security is integral to Django-Jestit. We offer an alternative to Django's built-in permissions system, automatically protecting your REST APIs and data.
 
-**Flexible Permission Management:** Django-Jestit supports both user-level and group-level permissions. Permissions can be applied at the system level or within specific groups, giving you granular control over data access and API operations.
+- **Robust Object-Level Permission System:** Unlike Django's native model-level permissions, Django-Jestit provides a simple yet robust permission system at the object level. This allows fine-grained control, enabling permissions to be applied to individual objects and extended to both user and group levels.
 
-**Effortless Integration:** Adding REST endpoints to your models is straightforward, enabling rapid development without compromising security or performance.
+- **Effortless Integration:** Adding REST endpoints to your models is straightforward, enabling rapid development without compromising security or performance.
 
-With Django-Jestit, you get the best of both worlds: a simple, efficient framework with powerful security features built-in, designed for developers who value speed and clarity without sacrificing control.
-
+With Django-Jestit, you get a simple, efficient framework with powerful security features designed for developers who value speed and control.
 ## Table of Contents
 
 1. [Overview](#overview)
