@@ -1,6 +1,22 @@
 # Django-Jestit Documentation
 
-Welcome to the Django-Jestit documentation! This project provides a set of Django applications and a REST framework designed to facilitate user authentication, authorization, and efficient testing. Below, you'll find detailed descriptions and examples for using each part of the Django-Jestit package.
+Django-Jestit is a streamlined set of Django applications and a lightweight REST framework designed to simplify user authentication, authorization, and efficient API testing. This documentation provides detailed descriptions and examples for utilizing each component of the Django-Jestit package effectively.
+
+### Why Django-Jestit?
+
+We built Django-Jestit to address a common challenge: the complexity and overhead associated with existing REST frameworks. While powerful, many frameworks are feature-heavy, making them cumbersome for projects that require simplicity, speed, and robust security without the extra bulk.
+
+### Key Differentiators:
+
+**Super Lightweight Framework:** Django-Jestit is intentionally minimalistic, providing an easy way to add REST APIs to your Django models without unnecessary complexity.
+
+**Built-in Security:** Security is at the core of Django-Jestit. It seamlessly integrates with Django's permissions system, offering automatic protection for your REST APIs and data. This ensures that only authorized users can view, create, update, or delete resources.
+
+**Flexible Permission Management:** Django-Jestit supports both user-level and group-level permissions. Permissions can be applied at the system level or within specific groups, giving you granular control over data access and API operations.
+
+**Effortless Integration:** Adding REST endpoints to your models is straightforward, enabling rapid development without compromising security or performance.
+
+With Django-Jestit, you get the best of both worlds: a simple, efficient framework with powerful security features built-in, designed for developers who value speed and clarity without sacrificing control.
 
 ## Table of Contents
 
