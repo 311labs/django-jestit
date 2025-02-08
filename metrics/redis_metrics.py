@@ -1,8 +1,9 @@
 from . import utils
 from jestit.helpers import redis
+from jestit.helpers.settings import settings
+import datetime
 
-
-def record_metrics(slug, when, count=0, group=None, category=None,
+def record_metrics(slug, when=None, count=0, group=None, category=None,
                    min_granulariy="hours", max_granularity="years", *args):
     """
     Records metrics in Redis by incrementing counters for various time granularities.
@@ -22,6 +23,9 @@ def record_metrics(slug, when, count=0, group=None, category=None,
     Returns:
         None
     """
+    if when is None:
+        # TODO add settings.METRICS_TIMEZONE
+        when = datetime.datetime.now()
     # Get Redis connection
     redis_conn = redis.get_connection()
     pipeline = redis_conn.pipeline()
