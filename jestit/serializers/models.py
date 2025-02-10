@@ -125,30 +125,30 @@ class GraphSerializer:
         """
         Determines the response format based on the client's Accept header.
         """
-        accept_header = request.headers.get('Accept', '')
-        if 'text/html' in accept_header or 'text/plain' in accept_header:
-            json_data = self.to_json()
-            # Wrap JSON in HTML with basic formatting for color
-            response_data = f"""
-            <html>
-            <head>
-            <style>
-                body {{ font-family: monospace; }}
-                .string {{ color: green; }}
-                .number {{ color: blue; }}
-                .boolean {{ color: purple; }}
-                .null {{ color: red; }}
-                .key {{ color: brown; font-weight: bold; }}
-            </style>
-            </head>
-            <body>
-            <pre>{self._colorize_json(json_data)}</pre>
-            </body>
-            </html>
-            """
-            return HttpResponse(response_data, content_type='text/html')
-        else:
-            return HttpResponse(self.to_json(**kwargs), content_type='application/json')
+        # accept_header = request.headers.get('Accept', '')
+        # if 'text/html' in accept_header or 'text/plain' in accept_header:
+        #     json_data = self.to_json()
+        #     # Wrap JSON in HTML with basic formatting for color
+        #     response_data = f"""
+        #     <html>
+        #     <head>
+        #     <style>
+        #         body {{ font-family: monospace; }}
+        #         .string {{ color: green; }}
+        #         .number {{ color: blue; }}
+        #         .boolean {{ color: purple; }}
+        #         .null {{ color: red; }}
+        #         .key {{ color: brown; font-weight: bold; }}
+        #     </style>
+        #     </head>
+        #     <body>
+        #     <pre>{self._colorize_json(json_data)}</pre>
+        #     </body>
+        #     </html>
+        #     """
+        #     return HttpResponse(response_data, content_type='text/html')
+        # else:
+        return HttpResponse(self.to_json(**kwargs), content_type='application/json')
 
     def _colorize_json(self, json_data):
         """Returns JSON data with HTML span wrappers for colors."""

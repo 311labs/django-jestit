@@ -36,6 +36,10 @@ def pretty_print(msg):
     print(out)
 
 
+def pretty_format(msg):
+    return PrettyLogger.pretty_format(msg)
+
+
 def color_print(msg, color, end="\n"):
     ConsoleLogger.print_message(msg, color, end)
 

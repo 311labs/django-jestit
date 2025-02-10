@@ -31,7 +31,7 @@ class User(AbstractBaseUser, JestitBase):
 
     class RestMeta:
         NO_SHOW_FIELDS = ["password", "auth_key", "onetime_code"]
-        SEARCH_FIELDS = ["username", "email", "first_name", "last_name", "display_name", "phone_number"]
+        SEARCH_FIELDS = ["username", "email", "display_name"]
         VIEW_PERMS = ["view_users", "manage_users", "owner"]
         SAVE_PERMS = ["manage_users", "owner"]
         LIST_DEFAULT_FILTERS = {

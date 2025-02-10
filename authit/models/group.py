@@ -9,6 +9,7 @@ class Group(models.Model, JestitBase):
     modified = models.DateTimeField(auto_now=True, db_index=True)
 
     name = models.CharField(max_length=200)
+    uuid = models.CharField(max_length=200, null=True, default=None, db_index=True)
     is_active = models.BooleanField(default=True, db_index=True)
     kind = models.CharField(max_length=80, default="group", db_index=True)
 

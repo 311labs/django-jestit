@@ -11,7 +11,7 @@ class JWTAuthenticationMiddleware(MiddlewareMixin):
             return
         prefix, token = token.split()
         if prefix.lower() != 'bearer':
-            return JsonResponse({'error': 'Invalid token prefix'}, status=401)
+            return
         # decode data to find the user
         token_manager = JWToken()
         jwt_data = token_manager.decode(token, validate=False)

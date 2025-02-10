@@ -164,7 +164,7 @@ def main(opts):
 
     opts.logger = logit.get_logger("testit", "testit.log")
     if opts.module and opts.test:
-        run_module_tests(opts.module, opts.test)
+        run_module_tests(opts, opts.module, opts.test)
     elif opts.module:
         run_tests_for_module(opts, opts.module)
     else:

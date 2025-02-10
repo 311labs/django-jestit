@@ -1,9 +1,12 @@
 from base64 import b64encode, b64decode
 from Crypto.Cipher import AES
 from Crypto.Util.Padding import pad, unpad
+from Crypto.Hash import SHA256
 import hashlib
 import hmac
+from objict import objict
 import json
+
 
 def encrypt(data, key):
     if isinstance(data, dict):
@@ -13,8 +16,11 @@ def encrypt(data, key):
 
     data = data.encode('utf-8')
 
-    # Create a new AES cipher with the key and a random IV
-    cipher = AES.new(key.encode('utf-8'), AES.MODE_CBC)
+    # Hash the key to ensure it's 32 bytes long (256 bits)
+    hashed_key = SHA256.new(key.encode('utf-8')).digest()
+
+    # Create a new AES cipher with the hashed key and a random IV
+    cipher = AES.new(hashed_key, AES.MODE_CBC)
     iv = cipher.iv
 
     # Pad the data to make it a multiple of the AES block size
@@ -36,8 +42,11 @@ def decrypt(enc_data_b64, key):
     iv = enc_data_bytes[:AES.block_size]
     encrypted_data = enc_data_bytes[AES.block_size:]
 
+    # Hash the key to ensure it's 32 bytes long (256 bits)
+    hashed_key = SHA256.new(key.encode('utf-8')).digest()
+
     # Create a new AES cipher with the key and the extracted IV
-    cipher = AES.new(key.encode('utf-8'), AES.MODE_CBC, iv)
+    cipher = AES.new(hashed_key, AES.MODE_CBC, iv)
 
     # Decrypt the data
     decrypted_padded_data = cipher.decrypt(encrypted_data)
@@ -48,12 +57,12 @@ def decrypt(enc_data_b64, key):
     # Try to decode the decrypted data as UTF-8
     decrypted_data_str = decrypted_data.decode('utf-8')
     try:
-        return json.loads(decrypted_data_str)
-    except json.JSONDecodeError:
+        return objict.from_json(decrypted_data_str)
+    except Exception:
         return decrypted_data_str
 
 
-def hash_to_hex(input_string, salt):
+def hash_to_hex(input_string):
     if not isinstance(input_string, str):
         raise ValueError("Input must be a string")
     # Create a new SHA-256 hasher

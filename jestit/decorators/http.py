@@ -47,8 +47,10 @@ def dispatch_error_handler(func):
             return func(request, *args, **kwargs)
         except jestit.errors.JestitException as err:
             return JsonResponse({"error": err.reason, "code": err.code}, status=err.status)
+        except ValueError as err:
+            return JsonResponse({"error": str(err), "code": 555}, status=500)
         except Exception as err:
-            logger.exception(f"Unhandled REST Exception: {request.path}")
+            # logger.exception(f"Unhandled REST Exception: {request.path}")
             stack_trace = traceback.format_exc()
             return JsonResponse({"error": str(err), "stack": stack_trace}, status=500)
 

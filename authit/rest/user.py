@@ -11,7 +11,7 @@ def on_user(request, pk=None):
 
 
 @jd.GET("login")
-@jd.requires_params(["username", "password"])
+@jd.requires_params("username", "password")
 def on_user_login(request):
     username = request.DATA.username
     password = request.DATA.password
