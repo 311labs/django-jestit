@@ -54,8 +54,8 @@ notes.append("")
 update_changelog("\n".join(notes))
 
 print(f"publishing: {version}")
-# Update the __version__ in rest/__init__.py
-init_file = "rest/__init__.py"
+# Update the __version__ in jestit/__init__.py
+init_file = "jestit/__init__.py"
 with open(init_file, "r") as file:
     init_content = file.read()
 
