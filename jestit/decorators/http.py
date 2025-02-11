@@ -11,7 +11,7 @@ from functools import wraps
 from jestit.helpers.request import parse_request_data
 from jestit.helpers import modules
 
-logger = logit.get_logger("jestit", "jestit.log")
+logger = logit.get_logger("error", "error.log")
 # logger.info("created")
 
 # Global registry for REST routes
@@ -48,13 +48,12 @@ def dispatch_error_handler(func):
         except jestit.errors.JestitException as err:
             return JsonResponse({"error": err.reason, "code": err.code}, status=err.status)
         except ValueError as err:
-            stack_trace = traceback.format_exc()
-            # logger.error(str(err), stack_trace)
-            return JsonResponse({"error": str(err), "code": 555, "stack":stack_trace}, status=500)
+            logger.exception(f"Error: {str(err)}, Path: {request.path}, IP: {request.META.get('REMOTE_ADDR')}")
+            return JsonResponse({"error": str(err), "code": 555 }, status=500)
         except Exception as err:
             # logger.exception(f"Unhandled REST Exception: {request.path}")
-            stack_trace = traceback.format_exc()
-            return JsonResponse({"error": str(err), "stack": stack_trace}, status=500)
+            logger.exception(f"Error: {str(err)}, Path: {request.path}, IP: {request.META.get('REMOTE_ADDR')}")
+            return JsonResponse({"error": str(err) }, status=500)
 
     return wrapper
 

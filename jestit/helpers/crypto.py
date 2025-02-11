@@ -76,6 +76,8 @@ def hash_to_hex(input_string):
 def derive_salt(digits, secret_key):
     """Derives a salt from the last 8 digits of the DIGITs using HMAC."""
     last_8_digits = digits[-8:]
+    if isinstance(secret_key, str):  # Ensure secret_key is bytes
+        secret_key = secret_key.encode()
     return hmac.new(secret_key, last_8_digits.encode(), hashlib.sha256).digest()[:16]  # Use first 16 bytes
 
 def hash_digits(digits, secret_key):

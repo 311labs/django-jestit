@@ -6,6 +6,7 @@ from decimal import Decimal
 from collections import OrderedDict
 from io import StringIO
 from typing import Optional
+import traceback
 # import traceback
 # import time
 # from datetime import datetime
@@ -135,6 +136,14 @@ class Logger:
         self.logger.critical(self._build_log(*args))
 
     def exception(self, *args):
+        exc_info = sys.exc_info()
+        if exc_info:
+            pretty_trace = PrettyLogger.pretty_format({
+                "type": str(exc_info[0]),
+                "message": str(exc_info[1]),
+                "stack_trace": traceback.format_exception(*exc_info)
+            })
+            args = (pretty_trace, *args)
         self.logger.exception(self._build_log(*args))
 
 

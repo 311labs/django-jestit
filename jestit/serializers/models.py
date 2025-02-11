@@ -2,8 +2,7 @@ import ujson
 from django.db.models import ForeignKey, OneToOneField
 from django.db.models.query import QuerySet
 from django.http import HttpResponse
-from datetime import datetime
-
+import datetime
 from jestit.helpers import logit
 
 logger = logit.get_logger("serializer", "serializer.log")
@@ -57,7 +56,7 @@ class GraphSerializer:
             logger.warning(f"graph '{self.graph}' not found for {obj.__class__.__name__}")
             return self._model_to_dict_custom(obj, fields=[field.name for field in obj._meta.fields])
         else:
-            logger.info(self.graph, graph_config)
+            logger.info(f"{obj.__class__.__name__}:{self.graph}", graph_config)
         data = self._model_to_dict_custom(obj, fields=graph_config.get("fields", None))  # Convert normal fields
 
         # Process extra fields (methods, metadata, etc.)
@@ -98,8 +97,11 @@ class GraphSerializer:
             field_value = getattr(obj, field.name)
 
             # Handle DateTimeField serialization to epoch
-            if isinstance(field_value, datetime):
+            if isinstance(field_value, datetime.datetime):
                 data[field.name] = int(field_value.timestamp())
+            # Handle date serialization to ISO format
+            elif isinstance(field_value, datetime.date):
+                data[field.name] = field_value.isoformat()
             elif field_value is not None and isinstance(field, (ForeignKey, OneToOneField)):
                 data[field.name] = field_value.id
             else:

@@ -1,5 +1,11 @@
 
 
+## v0.1.7 - February 11, 2025
+
+ added better error logging
+ added support for serializing datetime.date
+
+
 ## v0.1.6 - February 11, 2025
 
   fixing dependencies
