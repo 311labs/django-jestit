@@ -1,5 +1,10 @@
 
 
+## v0.1.5 - February 11, 2025
+
+ added logging middleware
+
+
 ## v0.1.4 - February 10, 2025
 
   * added support for python38
