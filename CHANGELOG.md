@@ -1,5 +1,10 @@
 
 
+## v0.1.6 - February 11, 2025
+
+  fixing dependencies
+
+
 ## v0.1.5 - February 11, 2025
 
  added logging middleware
