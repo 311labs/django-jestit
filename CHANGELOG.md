@@ -1,5 +1,10 @@
 
 
+## v0.1.4 - February 10, 2025
+
+  * added support for python38
+
+
 ## v0.1.3 - February 10, 2025
 
 
