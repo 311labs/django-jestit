@@ -12,7 +12,7 @@ from jestit.helpers.request import parse_request_data
 from jestit.helpers import modules
 
 logger = logit.get_logger("jestit", "jestit.log")
-logger.info("created")
+# logger.info("created")
 
 # Global registry for REST routes
 REGISTERED_URLS = {}
@@ -48,7 +48,9 @@ def dispatch_error_handler(func):
         except jestit.errors.JestitException as err:
             return JsonResponse({"error": err.reason, "code": err.code}, status=err.status)
         except ValueError as err:
-            return JsonResponse({"error": str(err), "code": 555}, status=500)
+            stack_trace = traceback.format_exc()
+            # logger.error(str(err), stack_trace)
+            return JsonResponse({"error": str(err), "code": 555, "stack":stack_trace}, status=500)
         except Exception as err:
             # logger.exception(f"Unhandled REST Exception: {request.path}")
             stack_trace = traceback.format_exc()

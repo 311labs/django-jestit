@@ -1,5 +1,10 @@
 
 
+## v0.1.1 - February 10, 2025
+
+ bugfix minor fix
+
+
 ## v0.1.1 - February 09, 2025
 
  added uuid to group
