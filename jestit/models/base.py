@@ -3,9 +3,8 @@ from jestit.serializers.models import GraphSerializer
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import transaction, models as dm
 from objict import objict
-from jestit.helpers import logit
-from jestit.helpers import modules
-from jestit.decorators import http as dec_http
+from jestit.helpers import dates, logit
+
 
 logger = logit.get_logger("debug", "debug.log")
 ACTIVE_REQUEST = None
@@ -255,8 +254,12 @@ class JestitBase:
                 del request.DATA["group"]
             queryset = queryset.filter(group=request.group)
         queryset = cls.on_rest_list_filter(request, queryset)
+        queryset = cls.on_rest_list_date_range_filter(request, queryset)
         queryset = cls.on_rest_list_sort(request, queryset)
+        return cls.on_rest_list_response(request, queryset)
 
+    @classmethod
+    def on_rest_list_response(cls, request, queryset):
         # Implement pagination
         page_size = request.DATA.get_typed("size", 10, int)
         page_start = request.DATA.get_typed("start", 0, int)
@@ -265,6 +268,35 @@ class JestitBase:
         graph = request.DATA.get("graph", "list")
         serializer = GraphSerializer(paged_queryset, graph=graph, many=True)
         return serializer.to_response(request, count=queryset.count(), page=page_start, size=page_size)
+
+    @classmethod
+    def on_rest_list_date_range_filter(cls, request, queryset):
+        """
+        Filter queryset based on a date range provided in the request.
+
+        Args:
+            request: Django HTTP request object.
+            queryset: The queryset to filter.
+
+        Returns:
+            The filtered queryset.
+        """
+        dr_field = request.DATA.get("dr_field", "created")
+        dr_start = request.DATA.get("dr_start")
+        dr_end = request.DATA.get("dr_end")
+
+        if dr_start:
+            dr_start = dates.parse_datetime(dr_start)
+            if request.group:
+                dr_start = request.group.get_local_time(dr_start)
+            queryset = queryset.filter(**{f"{dr_field}__gte": dr_start})
+
+        if dr_end:
+            dr_end = dates.parse_datetime(dr_end)
+            if request.group:
+                dr_end = request.group.get_local_time(dr_end)
+            queryset = queryset.filter(**{f"{dr_field}__lte": dr_end})
+        return queryset
 
     @classmethod
     def on_rest_list_filter(cls, request, queryset):

@@ -1,5 +1,10 @@
 
 
+## v0.1.8 - February 12, 2025
+
+  added support for timezone aware date handling
+
+
 ## v0.1.7 - February 11, 2025
 
  added better error logging

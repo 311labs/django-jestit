@@ -1,5 +1,9 @@
 from django.db import models
 from jestit.models import JestitBase
+from jestit.helpers import dates
+from datetime import datetime, timedelta
+import pytz
+
 
 class Group(models.Model, JestitBase):
     """
@@ -53,6 +57,16 @@ class Group(models.Model, JestitBase):
             }
         }
 
+    @property
+    def timezone(self):
+        return self.metadata.get("timezone", "America/Los_Angeles")
+
+    def get_local_day(self, dt_utc=None):
+        return dates.get_local_day(self.timezone, dt_utc)
+
+    def get_local_time(self, dt_utc):
+        return dates.get_local_time(self.timezone, dt_utc)
+
     def __str__(self):
         return self.name
 
@@ -65,6 +79,11 @@ class Group(models.Model, JestitBase):
         if ms is None:
             return user.has_permission(perms)
         return ms.has_permission(perms)
+
+    def get_metadata(self):
+        # converts our local metadata into an objict
+        self.metadata = self.jsonfield_as_objict("metadata")
+        return self.metadata
 
     @classmethod
     def on_rest_handle_list(cls, request):
