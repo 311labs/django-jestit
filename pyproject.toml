@@ -1,6 +1,6 @@
 [project]
 name = "django-jestit"
-version = "0.1.8"
+version = "0.1.9"
 description = ""
 authors = [{ name = "Ian Starnes", email = "ian@311labs.com" }]
 readme = "README.md"

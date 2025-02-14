@@ -24,6 +24,7 @@ class Group(models.Model, JestitBase):
     metadata = models.JSONField(default=dict, blank=True)
 
     class RestMeta:
+        SEARCH_FIELDS = ["name"]
         VIEW_PERMS = ["view_groups", "manage_groups"]
         SAVE_PERMS = ["manage_groups"]
         LIST_DEFAULT_FILTERS = {
@@ -74,11 +75,13 @@ class Group(models.Model, JestitBase):
         from authit.models.member import GroupMember
         return GroupMember.objects.filter(user=user).last()
 
-    def member_has_permission(self, user, perms):
+    def member_has_permission(self, user, perms, check_user=True):
+        if check_user and user.has_permission(perms):
+            return True
         ms = self.has_permission(user)
-        if ms is None:
-            return user.has_permission(perms)
-        return ms.has_permission(perms)
+        if ms is not None:
+            return ms.has_permission(perms)
+        return False
 
     def get_metadata(self):
         # converts our local metadata into an objict

@@ -1,5 +1,10 @@
 
 
+## v0.1.9 - February 14, 2025
+
+  fixed bug in member level permission checks, not checking user perms first
+
+
 ## v0.1.8 - February 12, 2025
 
   added support for timezone aware date handling

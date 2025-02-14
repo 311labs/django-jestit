@@ -326,7 +326,7 @@ class JestitBase:
     @classmethod
     def on_rest_list_search(cls, request, queryset):
         """
-        Search queryset based on 'q' param in request for fields defined in 'SEARCH_FIELDS'.
+        Search queryset based on 'q' param in the request for fields defined in 'SEARCH_FIELDS'.
 
         Args:
             request: Django HTTP request object.
