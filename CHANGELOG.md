@@ -1,5 +1,10 @@
 
 
+## v0.1.10 - February 17, 2025
+
+ added support for admin portal
+
+
 ## v0.1.9 - February 14, 2025
 
   fixed bug in member level permission checks, not checking user perms first
