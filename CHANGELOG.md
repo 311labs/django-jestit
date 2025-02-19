@@ -1,5 +1,10 @@
 
 
+## v0.1.11 - February 19, 2025
+
+  bugfix in handling of json fields
+
+
 ## v0.1.10 - February 17, 2025
 
  added support for admin portal

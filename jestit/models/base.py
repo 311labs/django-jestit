@@ -2,7 +2,7 @@ from django.http import JsonResponse
 from jestit.serializers.models import GraphSerializer
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import transaction, models as dm
-from objict import objict
+import objict
 from jestit.helpers import dates, logit
 
 
@@ -461,7 +461,7 @@ class JestitBase:
     def jsonfield_as_objict(self, field_name):
         existing_value = getattr(self, field_name, {})
         if not isinstance(existing_value, objict):
-            existing_value = objict.fromdict(existing_value)
+            existing_value = objict.objict.fromdict(existing_value)
             setattr(self, field_name, existing_value)
         return existing_value
 
