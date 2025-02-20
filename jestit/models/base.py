@@ -8,7 +8,7 @@ from jestit.helpers import dates, logit
 
 logger = logit.get_logger("debug", "debug.log")
 ACTIVE_REQUEST = None
-
+LOGGING_CLASS = None
 
 class JestitBase:
     """Base model class for REST operations with GraphSerializer integration."""
@@ -488,3 +488,11 @@ class JestitBase:
         """
         with transaction.atomic():
             self.save()
+
+    def model_logit(self, request, log, kind="model_log"):
+        return self.class_logit(request, log, kind, self.id)
+
+    @classmethod
+    def class_logit(cls, request, log, kind="cls_log", model_id=0):
+        from jestit.models import JestitLog
+        return JestitLog.logit(request, log, kind, cls.__name__, model_id)

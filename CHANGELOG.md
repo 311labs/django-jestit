@@ -1,5 +1,10 @@
 
 
+## v0.1.13 - February 20, 2025
+
+  cleanup of db logging, removed file logging
+
+
 ## v0.1.12 - February 20, 2025
 
   fixed over verbose logging
