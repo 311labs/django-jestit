@@ -460,7 +460,7 @@ class JestitBase:
 
     def jsonfield_as_objict(self, field_name):
         existing_value = getattr(self, field_name, {})
-        if not isinstance(existing_value, objict):
+        if not isinstance(existing_value, objict.objict):
             existing_value = objict.objict.fromdict(existing_value)
             setattr(self, field_name, existing_value)
         return existing_value

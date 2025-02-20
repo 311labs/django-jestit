@@ -1,5 +1,10 @@
 
 
+## v0.1.14 - February 20, 2025
+
+ hotfix for bug in metadata objict parsing
+
+
 ## v0.1.13 - February 20, 2025
 
   cleanup of db logging, removed file logging
