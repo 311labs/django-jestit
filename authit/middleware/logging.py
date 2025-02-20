@@ -7,18 +7,22 @@ class LoggerMiddleware:
         self.get_response = get_response
 
     def __call__(self, request):
-        # Log Request details with data
-        logger.info(
-            "REQUEST",
-            f"{request.META.get('REMOTE_ADDR', '')} - {request.path}",
-            request.GET,
-            request.body
-        )
+        # Only log if the endpoint starts with '/api'
+        if request.path.startswith('/api'):
+            # Log Request details with data
+            logger.info(
+                "REQUEST",
+                f"{request.META.get('REMOTE_ADDR', '')} - {request.path}",
+                request.GET,
+                request.body
+            )
         response = self.get_response(request)
-        # Log Response details with data
-        logger.info(
-            "RESPONSE",
-            f"{request.META.get('REMOTE_ADDR', '')} - {request.path}",
-            response.content
-        )
+        # Only log if the endpoint starts with '/api'
+        if request.path.startswith('/api'):
+            # Log Response details with data
+            logger.info(
+                "RESPONSE",
+                f"{request.META.get('REMOTE_ADDR', '')} - {request.path}",
+                response.content
+            )
         return response

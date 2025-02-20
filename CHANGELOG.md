@@ -1,5 +1,10 @@
 
 
+## v0.1.12 - February 20, 2025
+
+  fixed over verbose logging
+
+
 ## v0.1.11 - February 19, 2025
 
   bugfix in handling of json fields
