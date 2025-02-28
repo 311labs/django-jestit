@@ -1,1 +1,1 @@
-from .redis_metrics import record_metrics
+from .redis_metrics import record

@@ -6,7 +6,7 @@ Taskit is a lightweight task management and execution framework designed to hand
 
 Taskit's core components include:
 
-- **Publishing tasks**: Using `publish_task`, tasks can be published to specific channels with relevant data and expiration time.
+- **Publishing tasks**: Using `publish`, tasks can be published to specific channels with relevant data and expiration time.
 - **Task execution**: Tasks are executed concurrently by workers of a `TaskEngine`, which listens to specific channels for incoming tasks.
 - **Redis-based queuing**: Task states such as pending, running, and error are maintained using Redis sets.
 
@@ -16,7 +16,7 @@ The framework is designed to work efficiently in environments where tasks need t
 
 ### Publishing a Task
 
-The `taskit.publish_task` function is used to publish a task to a specified channel with the necessary data.
+The `taskit.publish` function is used to publish a task to a specified channel with the necessary data.
 
 - **channel**: The channel to which the task will be published. It determines the workers that will pick up the task for execution.
 - **function**: A string that provides the path to the function to be executed, e.g., `'my_module.my_function'`.

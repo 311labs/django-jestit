@@ -3,7 +3,7 @@ from jestit.helpers import redis
 from jestit.helpers.settings import settings
 import datetime
 
-def record_metrics(slug, when=None, count=0, group=None, category=None,
+def record(slug, when=None, count=0, group=None, category=None,
                    min_granulariy="hours", max_granularity="years", *args):
     """
     Records metrics in Redis by incrementing counters for various time granularities.

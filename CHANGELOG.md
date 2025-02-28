@@ -1,5 +1,10 @@
 
 
+## v0.1.15 - February 28, 2025
+
+  added rest support for taskit, more robust handling of errors
+
+
 ## v0.1.14 - February 20, 2025
 
  hotfix for bug in metadata objict parsing

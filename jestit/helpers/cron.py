@@ -1,6 +1,6 @@
 import datetime
 from typing import Callable, List, Dict, Any
-from jestit.decorators.cron import cron_decorator
+from jestit.decorators.cron import schedule
 
 def run_now() -> None:
     """
@@ -21,13 +21,13 @@ def find_scheduled_functions() -> List[Callable]:
         List[Callable]: A list of callable functions that match the
         current date and time according to their cron specifications.
     """
-    if not hasattr(cron_decorator, 'scheduled_functions'):
+    if not hasattr(schedule, 'scheduled_functions'):
         return []
 
     now = datetime.datetime.now()
     matching_funcs = []
 
-    for cron_spec in cron_decorator.scheduled_functions:
+    for cron_spec in schedule.scheduled_functions:
         if match_time(now, cron_spec):
             matching_funcs.append(cron_spec['func'])
 

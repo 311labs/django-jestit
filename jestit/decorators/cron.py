@@ -1,6 +1,6 @@
 from typing import Callable
 
-def cron_decorator(minutes: str = '*', hours: str = '*', days: str = '*',
+def schedule(minutes: str = '*', hours: str = '*', days: str = '*',
                    months: str = '*', weekdays: str = '*') -> Callable:
     """
     A decorator to schedule functions based on cron syntax.
