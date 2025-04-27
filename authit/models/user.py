@@ -35,6 +35,7 @@ class User(AbstractBaseUser, JestitBase):
     modified = models.DateTimeField(auto_now_add=True, editable=True)
     last_activity = models.DateTimeField(default=None, null=True, db_index=True)
 
+    uuid = models.UUIDField(default=uuid.uuid4, editable=False, db_index=True)
     username = models.TextField(unique=True)
     email = models.EmailField(unique=True)
     phone_number = models.CharField(max_length=32, blank=True, null=True, default=None)

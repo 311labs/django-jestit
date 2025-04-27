@@ -1,5 +1,10 @@
 
 
+## v0.1.16 - April 27, 2025
+
+  * ADDED: mimetype helper logic 
+
+
 ## v0.1.15 - February 28, 2025
 
   added rest support for taskit, more robust handling of errors
